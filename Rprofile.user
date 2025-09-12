@@ -1,0 +1,25 @@
+## NOTE: copy this file to ~/.Rprofile or symlink to it to use R in the (singularity) RStudio context
+# in part, this file enables R to find R libraries installed after the singularity image was built.
+
+# status of Seurat dependency sp, to enable proper Seurat function
+options("sp_evolution_status"=2)
+uun <- Sys.getenv("USER")
+
+# set personal R lib location
+if (paste0(version$major, ".", version$minor) == "4.5.0") {
+  .libPaths("/uoa/scratch/shared/cgebm/cgebm_pipelines/R4.5s")
+} else if (paste0(version$major, ".", version$minor) == "4.3.2") {
+  .libPaths("/uoa/scratch/shared/cgebm/cgebm_pipelines/R4.3s")
+}
+#.libPaths("~/sharedscratch/R4.3s")
+#.libPaths("~/R4.3s")
+#.libPaths("~/R")
+
+# set user cache dir on scratch space
+Sys.setenv(R_USER_CACHE_DIR = "~/sharedscratch/.RlibCache")
+#Sys.setenv(R_USER_CACHE_DIR = paste0("/uoa/scratch/users/", uun, "/.RlibCache"))
+
+# to load clusterProfiler, need to load HPO.db and therefore human data from AnnotationHub. Cache locally without asking
+AnnotationHub::setAnnotationHubOption("ASK", FALSE)
+#AnnotationHub::setAnnotationHubOption("CACHE", paste0("/uoa/scratch/users/", uun, "/.AnnotationHubCache")) # set alt AH cache loc
+
