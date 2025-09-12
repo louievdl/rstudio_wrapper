@@ -1,0 +1,12 @@
+#!/bin/bash
+
+module load singularity
+
+# working on macleod:
+#singularity run --bind /tmp/.X11-unix:/tmp/.X11-unix,$HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/scratch:/scratch:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY /uoa/scratch/shared/cgebm/rstudio422/louievdl_rstudio_422.sif
+# on maxwell, complaint that /scratch, /tmp/.X11-unix don't exist
+
+echo $DISPLAY
+
+singularity run --bind $HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/uoa/scratch:/uoa/scratch:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY /uoa/scratch/shared/cgebm/cgebm_pipelines/louievdl_rstudio_450.sif
+

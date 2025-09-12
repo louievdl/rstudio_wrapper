@@ -1,0 +1,1 @@
+srun --partition=spot-compute --exclude=hmem[001-014],vhmem002,egpu001,cgpu001 --nodes=1 --ntasks=1 --cpus-per-task=1 --mem=10G --x11=all /uoa/scratch/shared/cgebm/cgebm_pipelines/rstudio
