@@ -7,7 +7,11 @@ module load apptainer/1.1.9
 
 echo $DISPLAY
 
-singularity run --bind $HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/uoa/scratch:/uoa/scratch:rw,/tmp:/tmp:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY /uoa/scratch/shared/cgebm/cgebm_pipelines/louievdl_rstudio_450l.sif
+## full path to image
+#singularity run --bind $HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/uoa/scratch:/uoa/scratch:rw,/tmp:/tmp:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY /uoa/scratch/shared/cgebm/cgebm_pipelines_test/images/louievdl_rstudio_450l.sif
+# relative path to image
+SCRIPT_LOC=$(dirname $(realpath "$0"))
+singularity run --bind $HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/uoa/scratch:/uoa/scratch:rw,/tmp:/tmp:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY $SCRIPT_LOC/../images/louievdl_rstudio_450l.sif
 
 ## alternatively, access R on the image: get a bash prompt and run R
 #singularity exec --bind $HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/uoa/scratch:/uoa/scratch:rw,/tmp:/tmp:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY /uoa/scratch/shared/cgebm/cgebm_pipelines/louievdl_rstudio_450l.sif /bin/bash
