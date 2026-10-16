@@ -12,5 +12,11 @@ echo $DISPLAY
 #singularity run --bind $HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/uoa/scratch:/uoa/scratch:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY /uoa/scratch/shared/cgebm/cgebm_pipelines_test/images/louievdl_rstudio_450.sif
 # relative path to image
 SCRIPT_LOC=$(dirname $(realpath "$0"))
-singularity run --bind $HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/uoa/scratch:/uoa/scratch:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY $SCRIPT_LOC/../images/louievdl_rstudio_450.sif
+R_LIBS_USER=$(realpath $SCRIPT_LOC/../R4.5s)
+if [ ! -d $R_LIBS_USER ]; then
+    echo "ERROR: R_LIBS_USER directory $R_LIBS_USER not found"
+    exit 1
+fi
+
+singularity run --bind $HOME:$HOME:rw,$(pwd):$(pwd):rw,/run,/uoa/scratch:/uoa/scratch:rw --pwd $(pwd) --home $HOME --env DISPLAY=$DISPLAY --env R_LIBS_USER=$R_LIBS_USER $SCRIPT_LOC/../images/louievdl_rstudio_450.sif
 
