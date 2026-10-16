@@ -2,5 +2,5 @@
 #srun --partition=spot-compute --exclude=hmem[001-014],vhmem002,egpu001,cgpu001 --nodes=1 --ntasks=1 --cpus-per-task=1 --mem=10G --x11=all /uoa/scratch/shared/cgebm/cgebm_pipelines_test/rstudio_wrapper/rstudio
 # relative path to script
 SCRIPT_LOC=$(dirname $(realpath "$0")) # this is run on the login node, so not affected by compute node
-srun --partition=spot-compute --exclude=hmem[001-014],vhmem002,egpu001,cgpu001 --nodes=1 --ntasks=1 --cpus-per-task=1 --mem=10G --x11=all $SCRIPT_LOC/rstudio
+srun --partition=spot-compute --exclude=hmem[001-014],vhmem[001-002],egpu001,cgpu001 --nodes=1 --ntasks=1 --cpus-per-task=1 --mem=10G --x11=all $SCRIPT_LOC/rstudio
 
