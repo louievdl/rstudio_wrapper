@@ -7,9 +7,9 @@ uun <- Sys.getenv("USER")
 
 # set personal R lib location
 if (paste0(version$major, ".", version$minor) == "4.5.0") {
-  .libPaths("/uoa/scratch/shared/cgebm/cgebm_pipelines/R4.5s")
+  .libPaths("/uoa/scratch/shared/cgebm/cgebm_pipelines_test/R4.5s")
 } else if (paste0(version$major, ".", version$minor) == "4.3.2") {
-  .libPaths("/uoa/scratch/shared/cgebm/cgebm_pipelines/R4.3s")
+  .libPaths("/uoa/scratch/shared/cgebm/cgebm_pipelines_test/R4.3s")
 }
 #.libPaths("~/sharedscratch/R4.3s")
 #.libPaths("~/R4.3s")
